@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}"/>
+</head>
+<body>
+
+    <h1>Hello World!-body</h1>
+    {{ title|safe }}
+    {{ body|md|safe }}
+    {{ read_md('requireenv.txt') }}
+    <nav>
+        <a href="{{ url_for('.services') }}">Services</a>
+        <a href="{{ url_for('.about') }}">About</a>
+    </nav>
+
+</body>
+</html>
