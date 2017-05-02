@@ -92,5 +92,9 @@ def read_md(filename):
         content = reduce(lambda x,y:x+y,md_file.readlines())
     return content.decode('utf-8')
 
+@app.template_test('current_link')
+def is_current_link(link):
+    return link['href'] == request.url
+
 if __name__ == '__main__':
     app.run(debug=True)

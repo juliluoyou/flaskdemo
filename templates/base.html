@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        {% include ['includes/_head.html',] %}
+    {% endblock %}
+</head>
+<body>
+<header>{% block header %} {% endblock %} </header>
+<div>{% block content %} {% endblock %} </div>
+<footer>
+    {% block footer %}
+        Copyright 2017 by...
+    {% endblock %}
+</footer>
+</body>
+</html>
