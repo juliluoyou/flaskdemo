@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for,make_response,abort
+from flask import Flask,render_template,request,redirect,url_for,make_response,abort,flash
 from flask.ext.script import Manager
 from werkzeug.routing import BaseConverter
 from os import path
@@ -10,12 +10,14 @@ class RegexConvertor(BaseConverter):
         self.regex=items[0]
 
 app = Flask(__name__)
+app.config.from_pyfile('config')
 app.url_map.converters['regex']=RegexConvertor
 manager = Manager(app)
 
 
 @app.route('/')
 def hello_world():
+    flash("ahhahahahahah")
     #return render_template('index.html',title='<h1>Hello World!-title</h1>')
     response = make_response(render_template(
         'index.html',
@@ -52,14 +54,19 @@ def projects():
 
 @app.route('/login',methods=['GET','POST'])
 def login():
-    if request.method == "POST":
-        username=request.form['username']
-        password = request.form['password']
-        print 'POST:',username, password
-    else:
-        username = request.args['username']
-        print 'else:', username
-    return render_template('login.html', method=request.method)
+    # if request.method == "POST":
+    #     username=request.form['username']
+    #     password = request.form['password']
+    #     print 'POST:',username, password
+    # else:
+    #     username = request.args['username']
+    #     print 'else:', username
+    # return render_template('login.html', method=request.method)
+
+    flash("ahhahahahahah")
+    from forms import LoginForm
+    form = LoginForm()
+    return render_template('login.html',title='demo-title', form=form)
 
 @app.route('/upload',methods=['GET','POST'])
 def upload():
